@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "734607747907",
+    "project_id": "colourchangedemo",
+    "storage_bucket": "colourchangedemo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734607747907:android:0d34da8decbea1425a1df6",
+        "android_client_info": {
+          "package_name": "com.colourchangedemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734607747907-i7ae9muedief8j2cf63fge8ns67c55ba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6XWUJKDTc22qJQ52aZR27WJc6Gs69AwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734607747907-i7ae9muedief8j2cf63fge8ns67c55ba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

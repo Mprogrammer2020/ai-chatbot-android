@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+         <variable
+        name="model"
+        type="com.colourchangedemo.viewmodel.OpenAIViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context=".ui.OpenAISampleActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:visibility="gone"
+            android:id="@+id/cl_root_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_top"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:padding="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_back"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_margin="10dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_back"/>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="@+id/iv_back"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" >
+                    <ImageView
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_dot_logo"/>
+                    <TextView
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:text="@string/app_name"
+                        android:textSize="18dp"
+                        android:fontFamily="@font/kodchasan_regular"
+                        android:includeFontPadding="false"
+                        />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintTop_toBottomOf="@+id/cl_top"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/shape_bg_white">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_chat"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="10dp"
+                    tools:listitem="@layout/row_open_ai_chat"
+                    app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/pb"/>
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/pb"
+                    android:visibility="gone"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    app:lottie_loop="true"
+                    app:layout_constraintBottom_toTopOf="@+id/rl_bottom"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:lottie_rawRes="@raw/typing"
+                    app:lottie_autoPlay="true"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/rl_bottom"
+                    android:layout_width="0dp"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginHorizontal="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/shape_message_bg"
+                        >
+                        <EditText
+                            android:id="@+id/et_message"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:padding="12dp"
+                            android:singleLine="true"
+                            android:textSize="15dp"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_send"
+                            android:maxLines="1"
+                            android:layout_marginEnd="2dp"
+                            android:background="@android:color/transparent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:background="@android:color/black"
+                            app:layout_constraintTop_toTopOf="@+id/et_message"
+                            app:layout_constraintBottom_toBottomOf="@+id/et_message"
+                            app:layout_constraintStart_toEndOf="@+id/et_message"
+                            app:layout_constraintEnd_toStartOf="@+id/iv_send"/>
+
+                        <ImageView
+                            android:id="@+id/iv_send"
+                            android:padding="15dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            app:tint="@color/black"
+                            android:src="@drawable/ic_send"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_talk"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/pb2"
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:lottie_loop="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_rawRes="@raw/first_view"
+                app:lottie_autoPlay="true"/>
+
+
+            <TextView
+                android:id="@+id/tv_lets_talk"
+                app:layout_constraintTop_toBottomOf="@+id/pb2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Let\'s talk with NetsetAI."
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="8dp"
+                android:background="@drawable/shape_bg_talk"
+                android:fontFamily="@font/kodchasan_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
